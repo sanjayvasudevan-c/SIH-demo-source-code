@@ -236,3 +236,7 @@ Choices made where the build spec was silent, plus the design review recorded at
 - Screenshots: `npm run screens` (Playwright, 1440×900 and 390×844, English and Hindi) writes 36 PNGs to `docs/screens/`. To show impact and review it creates one draft in review if none exists; `npm run demo:reset` removes it.
 - Name change (requested by the user): the product name is "AICTE Demo Website / एआईसीटीई डेमो वेबसाइट" and the monogram reads "AD". The prompt asked for a name without "AICTE"; the user chose this one. The label "Prototype for Smart India Hackathon 2026 · Not an official AICTE system" stays on every page, so the site still does not present itself as an official AICTE system. There is still no official logo, emblem or copied text.
 - High contrast restyled at the user's request: no black background. It keeps the light layout of the other pages (white page, navy bars) and raises contrast with black text, darker status colours, dark navy underlined links and 2px black borders on form controls.
+
+## Product name: AICTE Approval and Operations Compliance Platform
+
+- Name change (requested by the user): the product is now "AICTE Approval and Operations Compliance Platform / एआईसीटीई अनुमोदन एवं संचालन अनुपालन प्लेटफ़ॉर्म", matching slide 2 of the SIH presentation. The monogram is "AP" (Approval Platform). The live demo keeps its address, aicte-demo-website.vercel.app, so existing links in the deck, the video and the submission keep working.

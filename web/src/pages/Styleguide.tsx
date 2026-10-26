@@ -93,7 +93,7 @@ export function StyleguidePage() {
                 <StatusBadge kind="escalated" level={2} />
               </div>
               <p className="text-base">
-                AICTE Demo Website · <span lang="hi">एआईसीटीई डेमो वेबसाइट — अनुमोदन कार्यप्रवाह और अनुपालन निगरानी</span> · <a href="#top" className="text-accent underline">A link</a>
+                AICTE Approval and Operations Compliance Platform · <span lang="hi">एआईसीटीई अनुमोदन एवं संचालन अनुपालन प्लेटफ़ॉर्म — कार्यप्रवाह, समय-सीमाएँ, अनुपालन और अलर्ट</span> · <a href="#top" className="text-accent underline">A link</a>
               </p>
               <div className="flex h-8 overflow-hidden rounded">
                 <span className="flex-1 bg-gov-ink" title="gov-ink" />

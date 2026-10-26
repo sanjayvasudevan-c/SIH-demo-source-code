@@ -1,7 +1,7 @@
 // Every user-facing string of the shell and public pages lives here; hi.ts has the same keys (add-on B3).
 export const en = {
   app: {
-    name: 'AICTE Demo Website',
+    name: 'AICTE Approval and Operations Compliance Platform',
     skip: 'Skip to main content',
     simulatedDate: 'Simulated date',
     today: 'Today',
@@ -73,9 +73,9 @@ export const en = {
     dismiss: 'Dismiss',
   },
   gov: {
-    name: 'AICTE Demo Website',
-    nameHi: 'एआईसीटीई डेमो वेबसाइट',
-    subtitle: 'Approval workflow and compliance monitoring',
+    name: 'AICTE Approval and Operations Compliance Platform',
+    nameHi: 'एआईसीटीई अनुमोदन एवं संचालन अनुपालन प्लेटफ़ॉर्म',
+    subtitle: 'Workflow, deadlines, compliance and alerts',
     prototype: 'Prototype for Smart India Hackathon 2026 · Not an official AICTE system',
     prototypeShort: 'Prototype · SIH 2026',
     screenReader: 'Screen reader access',
@@ -121,7 +121,7 @@ export const en = {
   },
   footer: {
     about: 'About this prototype',
-    aboutText: 'AICTE Demo Website is a student prototype of an approval workflow and compliance monitoring system, built for Smart India Hackathon 2026.',
+    aboutText: 'The AICTE Approval and Operations Compliance Platform is a student prototype of an approval workflow and compliance monitoring system, built for Smart India Hackathon 2026.',
     help: 'Help',
     accessibility: 'Accessibility statement',
     sitemap: 'Sitemap',

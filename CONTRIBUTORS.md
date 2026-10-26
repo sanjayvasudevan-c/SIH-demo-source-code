@@ -1,6 +1,6 @@
 # Contributors
 
-The AICTE Demo Website was built by **Team GeoLogics** for Smart India Hackathon 2026 (problem statement SIH26262, team ID 197385).
+The AICTE Approval and Operations Compliance Platform was built by **Team GeoLogics** for Smart India Hackathon 2026 (problem statement SIH26262, team ID 197385).
 
 | GitHub | Team |
 |---|---|

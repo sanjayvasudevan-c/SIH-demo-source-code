@@ -1,4 +1,4 @@
-# AICTE Demo Website / एआईसीटीई डेमो वेबसाइट: approval workflow and compliance monitoring (SIH 2026 prototype)
+# AICTE Approval and Operations Compliance Platform / एआईसीटीई अनुमोदन एवं संचालन अनुपालन प्लेटफ़ॉर्म (SIH 2026 prototype)
 
 Working prototype for the Smart India Hackathon 2026 AICTE problem statement *Integrated AICTE Approval Workflow Automation, Compliance Monitoring and Alert Management System*. This build covers phases 0 to 4 of the final architecture (v3).
 
@@ -183,7 +183,7 @@ This script (steps 1–11) is automated with Playwright during development and p
 - [x] Phase 3: Action Center and dashboards (flags with reasons and five-key order, college "What we need from you", team roll-up with drill-down, workforce with reassignment and portfolio moves, no-eligible-officer queue, seeded history)
 - [x] Phase 4: post-approval and form check (decide with conditions, undertakings and expiry items, evidence and renewal verification, automatic close, form check service with rules and an Isolation Forest, college and officer panels)
 - [x] Add-on: yearly rule packs (cycles, versions and amendments; maker-checker Rules Center; pinning; live rebase for relaxing changes; impact preview; public notices)
-- [x] Add-on: GIGW-style interface (AICTE Demo Website shell, public pages, high contrast, text sizes, Hindi, self-hosted fonts, screenshots)
+- [x] Add-on: GIGW-style interface (portal shell, public pages, high contrast, text sizes, Hindi, self-hosted fonts, screenshots)
 
 ## Modules
 
@@ -247,7 +247,7 @@ The interface follows the visual language of Indian government portals built to 
 
 **Layout.** Public pages (home and sign in, Approval process, What changed, Track application, Help, Contact and the policy pages) have:
 - a slim dark utility bar;
-- a white header with the bilingual name block ("एआईसीटीई डेमो वेबसाइट / AICTE Demo Website") and our own "AD" monogram;
+- a white header with the bilingual name block ("एआईसीटीई अनुमोदन एवं संचालन अनुपालन प्लेटफ़ॉर्म / AICTE Approval and Operations Compliance Platform") and our own "AP" monogram;
 - a navy navigation bar with a saffron underline on the active item;
 - a static "What's new" strip with the three latest rule notices;
 - a four-column dark footer with a "Last updated" line and the rules version in force.

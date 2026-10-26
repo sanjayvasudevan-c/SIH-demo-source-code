@@ -24,13 +24,13 @@ function usePublicClock() {
 
 const cycleText = (c: string) => c.replace('-', '–');
 
-/** Our own monogram: the letters "AD" (AICTE Demo) in a 2px-stroke square. */
+/** Our own monogram: the letters "AP" (Approval Platform) in a 2px-stroke square. */
 export function Monogram({ size = 40 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden className="shrink-0 text-gov-mark">
       <rect x="1" y="1" width="38" height="38" fill="none" stroke="currentColor" strokeWidth="2" />
       <text x="20" y="26" textAnchor="middle" fontSize="16" fontWeight="700" fill="currentColor" fontFamily="'Noto Sans', sans-serif">
-        AD
+        AP
       </text>
     </svg>
   );
@@ -51,7 +51,7 @@ export function NameBlock({ compact }: { compact?: boolean }) {
         {t.gov.nameHi}
       </span>
       <span className="text-xl font-bold leading-tight text-primary">{t.gov.name}</span>
-      <span className="truncate text-sm text-secondary">{t.gov.subtitle}</span>
+      <span className="hidden truncate text-sm text-secondary sm:block">{t.gov.subtitle}</span>
     </span>
   );
 }
