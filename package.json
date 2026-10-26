@@ -1,0 +1,19 @@
+{
+  "name": "aicte-platform",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "setup": "npm install && node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
+    "test": "npm --workspace api run test",
+    "test:formcheck": "cd formcheck && python3 -m pytest -q",
+    "demo:reset": "npm --workspace api run demo:reset",
+    "demo:tamper": "npm --workspace api run demo:tamper",
+    "build": "npm --workspace api run build && npm --workspace web run build",
+    "screens": "node scripts/screens.mjs"
+  }
+}

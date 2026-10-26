@@ -1,0 +1,75 @@
+name: aicte-platform
+
+x-api-env: &api-env
+  DATABASE_URL: postgresql://aicte_app:${APP_PASSWORD:-app_pw}@db:5432/aicte
+  DEMO_ADMIN_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@db:5432/postgres
+  JWT_SECRET: ${JWT_SECRET:-change-me-to-a-long-random-string}
+  DEMO_MODE: ${DEMO_MODE:-true}
+  CLIENT_ORIGIN: ${CLIENT_ORIGIN_COMPOSE:-http://localhost:8080}
+  FORMCHECK_URL: http://formcheck:8000
+  SHARED_DIR: /app/shared
+  PORT: "4000"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment: *api-env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./api/storage:/app/api/storage
+    restart: unless-stopped
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    command: ["node", "dist/src/scheduler.js"]
+    environment: *api-env
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      replicas: 2
+    restart: unless-stopped
+
+  formcheck:
+    build:
+      context: .
+      dockerfile: formcheck/Dockerfile
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

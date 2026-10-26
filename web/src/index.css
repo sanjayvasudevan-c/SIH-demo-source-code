@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Colour tokens (add-on B1). Contrast ratios are listed in DECISIONS.md. */
+  :root {
+    --c-white: #ffffff;
+    --c-page: #f4f6f9;
+    --c-surface: #ffffff;
+    --c-subtle: #eef0f2;
+    --c-line: #d0d5db;
+    --c-input: #8c94a0;
+    --c-primary: #1b1f24;
+    --c-secondary: #4b5563;
+    --c-muted: #646b75;
+    --c-scrim: rgba(11, 37, 69, 0.45);
+    --c-accent: #1b4f9c;
+    --c-accent-hover: #143d7a;
+    --c-accent-soft: #eaf0f8;
+    --c-accent-contrast: #ffffff;
+    --c-success: #166534;
+    --c-success-soft: #e8f5ec;
+    --c-warning: #8a4b00;
+    --c-warning-soft: #fdf3e1;
+    --c-danger: #b42318;
+    --c-danger-soft: #fdecea;
+    --c-neutral: #4b5563;
+    --c-neutral-soft: #eef0f2;
+    --c-gov-ink: #0b2545;
+    --c-gov-ink-muted: #afc3dc;
+    --c-gov-nav: #13315c;
+    --c-gov-saffron: #f59e0b;
+    --c-gov-on-dark: #ffffff;
+    --c-gov-mark: #13315c;
+    --c-on-solid: #ffffff;
+  }
+  /* High contrast: the same light layout as every other page, with black text, darker colours, underlined
+     links and black borders on every control (no black background). */
+  [data-theme='contrast'] {
+    --c-white: #ffffff;
+    --c-page: #ffffff;
+    --c-surface: #ffffff;
+    --c-subtle: #f0f0f0;
+    --c-line: #000000;
+    --c-input: #000000;
+    --c-primary: #000000;
+    --c-secondary: #1a1a1a;
+    --c-muted: #262626;
+    --c-scrim: rgba(0, 0, 0, 0.6);
+    --c-accent: #0b2545;
+    --c-accent-hover: #000000;
+    --c-accent-soft: #e3e9f2;
+    --c-success: #0b4d1c;
+    --c-success-soft: #ffffff;
+    --c-warning: #5c3200;
+    --c-warning-soft: #ffffff;
+    --c-danger: #7a1610;
+    --c-danger-soft: #ffffff;
+    --c-neutral: #1a1a1a;
+    --c-neutral-soft: #ffffff;
+    --c-gov-ink: #0b2545;
+    --c-gov-ink-muted: #ffffff;
+    --c-gov-nav: #0b2545;
+    --c-gov-saffron: #f59e0b;
+    --c-gov-on-dark: #ffffff;
+    --c-gov-mark: #0b2545;
+    --c-on-solid: #ffffff;
+  }
+  [data-theme='contrast'] input,
+  [data-theme='contrast'] select,
+  [data-theme='contrast'] textarea {
+    border: 2px solid #000000;
+  }
+  [data-theme='contrast'] main a:not(.bg-accent) {
+    text-decoration: underline;
+  }
+  /* Text size (A- / A / A+ / A++): rem-based layout scales from the root size. */
+  html[data-text-size='sm'] {
+    font-size: 87.5%;
+  }
+  html[data-text-size='lg'] {
+    font-size: 112.5%;
+  }
+  html[data-text-size='xl'] {
+    font-size: 125%;
+  }
+  /* Hindi: Noto Sans Devanagari with 2px more line height. */
+  html[lang='hi'] body {
+    line-height: calc(1em + 0.75rem);
+  }
+  html {
+    @apply bg-page text-primary font-sans text-base antialiased;
+  }
+  body {
+    @apply bg-page;
+  }
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    @apply ring-2 ring-accent ring-offset-2;
+  }
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (pointer: coarse) {
+    .hit {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Public pages: base 16/24 and page titles 28/36 (the work app keeps 14/20). */
+  .public-type .text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .public-type h1.text-2xl {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .id-text {
+    @apply font-mono text-sm;
+  }
+}

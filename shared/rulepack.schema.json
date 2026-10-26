@@ -1,0 +1,1209 @@
+{
+  "$ref": "#/definitions/RulePack",
+  "definitions": {
+    "RulePack": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "cycle": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}$"
+            },
+            "version": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "baseRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "notes": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "cycle",
+            "version",
+            "title",
+            "baseRef"
+          ],
+          "additionalProperties": false
+        },
+        "programmes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Z0-9_]{2,20}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "DIPLOMA",
+                  "UG",
+                  "PG",
+                  "PGDM"
+                ]
+              },
+              "discipline": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "inPurview": {},
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "code",
+              "label",
+              "level",
+              "discipline"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "applicationTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "NEW_INSTITUTION",
+                  "EXTENSION",
+                  "NAME_CHANGE",
+                  "INTAKE_INCREASE",
+                  "CHANGE_OF_SITE",
+                  "VERIFICATION_VISIT",
+                  "RESTORATION"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "NEW",
+                  "EXTENSION",
+                  "EXPANSION"
+                ]
+              },
+              "categoryWeight": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 10
+              },
+              "categoryRank": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "eligibility": {},
+              "route": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "stage": {
+                      "type": "string",
+                      "enum": [
+                        "SCRUTINY",
+                        "EVC",
+                        "SAC_SHC",
+                        "DECISION"
+                      ]
+                    },
+                    "when": {}
+                  },
+                  "required": [
+                    "stage"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "PORTAL",
+                  "NSWS"
+                ]
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "type",
+              "label",
+              "category",
+              "categoryWeight",
+              "categoryRank",
+              "route",
+              "channel"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "pattern": "^[A-Z0-9_]{2,40}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "appliesTo": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "NEW_INSTITUTION",
+                    "EXTENSION",
+                    "NAME_CHANGE",
+                    "INTAKE_INCREASE",
+                    "CHANGE_OF_SITE",
+                    "VERIFICATION_VISIT",
+                    "RESTORATION"
+                  ]
+                },
+                "minItems": 1
+              },
+              "when": {},
+              "critical": {
+                "type": "boolean"
+              },
+              "hasExpiry": {
+                "type": "boolean"
+              },
+              "minValidityYears": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 99
+              },
+              "format": {
+                "type": "string",
+                "const": "PDF"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "label",
+              "appliesTo",
+              "critical",
+              "hasExpiry"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "norms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9]{1,60}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "MIN",
+                  "MAX"
+                ]
+              },
+              "value": {
+                "type": "number"
+              },
+              "scope": {
+                "type": "object",
+                "properties": {
+                  "level": {
+                    "type": "string"
+                  },
+                  "discipline": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "unit",
+              "direction",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "formCheckRules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]{0,15}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "HIGH",
+                  "MEDIUM"
+                ]
+              },
+              "when": {},
+              "message": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 400
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "valueVar": {
+                "type": "string"
+              },
+              "valueAsPercent": {
+                "type": "boolean"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "severity",
+              "message",
+              "fields"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "timelines": {
+          "type": "object",
+          "properties": {
+            "SCRUTINY": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            },
+            "SAC_SHC": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            },
+            "DECISION": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            },
+            "EVC_SCHEDULE": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            },
+            "EVC_REPORT": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            },
+            "VERIFICATION": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            }
+          },
+          "required": [
+            "SCRUTINY",
+            "SAC_SHC",
+            "DECISION",
+            "EVC_SCHEDULE",
+            "EVC_REPORT",
+            "VERIFICATION"
+          ],
+          "additionalProperties": false
+        },
+        "fees": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "appliesTo": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "NEW_INSTITUTION",
+                    "EXTENSION",
+                    "NAME_CHANGE",
+                    "INTAKE_INCREASE",
+                    "CHANGE_OF_SITE",
+                    "VERIFICATION_VISIT",
+                    "RESTORATION"
+                  ]
+                },
+                "minItems": 1
+              },
+              "programmeLevel": {
+                "type": "string"
+              },
+              "amountInr": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "lateFeeInr": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "appliesTo",
+              "amountInr"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "letters": {
+          "type": "object",
+          "properties": {
+            "deficiency": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "body": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 8000
+                }
+              },
+              "required": [
+                "subject",
+                "body"
+              ],
+              "additionalProperties": false
+            },
+            "decision": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "body": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 8000
+                }
+              },
+              "required": [
+                "subject",
+                "body"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "deficiency",
+            "decision"
+          ],
+          "additionalProperties": false
+        },
+        "schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]{2,40}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "APPLICATION_WINDOW",
+                  "LATE_FEE_WINDOW",
+                  "PAYMENT_DEADLINE",
+                  "DECISION_LAST_DATE"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "appliesTo": {},
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "kind",
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "reminders": {
+          "type": "object",
+          "properties": {
+            "complianceOffsets": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 365
+              },
+              "minItems": 1
+            },
+            "atRiskPct": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "stalledWorkingDays": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "urgentDays": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "dueSoonDays": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "complianceOffsets",
+            "atRiskPct",
+            "stalledWorkingDays",
+            "urgentDays",
+            "dueSoonDays"
+          ],
+          "additionalProperties": false
+        },
+        "escalation": {
+          "type": "object",
+          "properties": {
+            "thresholds": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "exclusiveMinimum": 0
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "stageUnit": {
+              "type": "string",
+              "const": "WORKING"
+            },
+            "complianceUnit": {
+              "type": "string",
+              "const": "CALENDAR"
+            },
+            "levelTitles": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "thresholds",
+            "stageUnit",
+            "complianceUnit",
+            "levelTitles"
+          ],
+          "additionalProperties": false
+        },
+        "assignment": {
+          "type": "object",
+          "properties": {
+            "stageWeight": {
+              "type": "object",
+              "properties": {
+                "SCRUTINY": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "RE_SCRUTINY": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "EVC_DESK": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "VERIFY": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "SAC_SHC_FORWARD": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "required": [
+                "SCRUTINY",
+                "RE_SCRUTINY",
+                "EVC_DESK",
+                "VERIFY",
+                "SAC_SHC_FORWARD"
+              ],
+              "additionalProperties": false
+            },
+            "defaultCapacityPoints": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "maxUtil": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "urgentMaxUtil": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "continuityUtilCap": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "scoreWeights": {
+              "type": "object",
+              "properties": {
+                "projectedUtil": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "recent": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "mismatch": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "projectedUtil",
+                "recent",
+                "mismatch"
+              ],
+              "additionalProperties": false
+            },
+            "recentWorkingDays": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "specialisationLookbackDays": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "idleBelowTeamAverage": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "overloadedAbove": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "eligibility": {
+              "type": "object",
+              "properties": {
+                "SCRUTINY": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "OFFICER",
+                          "BUREAU"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "HOME",
+                          "ANY"
+                        ]
+                      },
+                      "skill": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "tier",
+                      "role",
+                      "region"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "RE_SCRUTINY": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "OFFICER",
+                          "BUREAU"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "HOME",
+                          "ANY"
+                        ]
+                      },
+                      "skill": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "tier",
+                      "role",
+                      "region"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "EVC_DESK": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "OFFICER",
+                          "BUREAU"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "HOME",
+                          "ANY"
+                        ]
+                      },
+                      "skill": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "tier",
+                      "role",
+                      "region"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "VERIFY": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "OFFICER",
+                          "BUREAU"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "HOME",
+                          "ANY"
+                        ]
+                      },
+                      "skill": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "tier",
+                      "role",
+                      "region"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "SAC_SHC_FORWARD": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "OFFICER",
+                          "BUREAU"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "HOME",
+                          "ANY"
+                        ]
+                      },
+                      "skill": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "tier",
+                      "role",
+                      "region"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "SCRUTINY",
+                "RE_SCRUTINY",
+                "EVC_DESK",
+                "VERIFY",
+                "SAC_SHC_FORWARD"
+              ],
+              "additionalProperties": false
+            },
+            "taskSkill": {
+              "type": "object",
+              "properties": {
+                "SCRUTINY": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "RE_SCRUTINY": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "EVC_DESK": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "VERIFY": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "SAC_SHC_FORWARD": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "SCRUTINY",
+                "RE_SCRUTINY",
+                "EVC_DESK",
+                "VERIFY",
+                "SAC_SHC_FORWARD"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "stageWeight",
+            "defaultCapacityPoints",
+            "maxUtil",
+            "urgentMaxUtil",
+            "continuityUtilCap",
+            "scoreWeights",
+            "recentWorkingDays",
+            "specialisationLookbackDays",
+            "idleBelowTeamAverage",
+            "overloadedAbove",
+            "eligibility",
+            "taskSkill"
+          ],
+          "additionalProperties": false
+        },
+        "committees": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "committee": {
+                "type": "string",
+                "enum": [
+                  "EVC",
+                  "SAC",
+                  "SHC",
+                  "EXPERT"
+                ]
+              },
+              "appointingAuthority": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "size": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 20
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "amendmentId": {
+                    "type": "string"
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "clause": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "required": [
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "committee",
+              "appointingAuthority",
+              "size"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "calendar": {
+          "type": "object",
+          "properties": {
+            "holidays": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                },
+                "required": [
+                  "date",
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "holidays"
+          ],
+          "additionalProperties": false
+        },
+        "changeNotice": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "audience": {
+                "type": "string",
+                "enum": [
+                  "COLLEGE",
+                  "STAFF"
+                ]
+              },
+              "amendmentId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "summary",
+              "audience"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "meta",
+        "programmes",
+        "applicationTypes",
+        "documents",
+        "norms",
+        "formCheckRules",
+        "timelines",
+        "fees",
+        "letters",
+        "schedule",
+        "reminders",
+        "escalation",
+        "assignment",
+        "committees",
+        "calendar",
+        "changeNotice"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

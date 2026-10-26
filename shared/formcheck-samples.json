@@ -1,0 +1,1717 @@
+[
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 29704,
+      "builtupAreaSqm": 7568,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 8,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 21447,
+      "builtupAreaSqm": 27881,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R1"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 10955,
+      "builtupAreaSqm": 2637,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 22,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 47140,
+      "builtupAreaSqm": 13385,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2",
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 18113,
+      "builtupAreaSqm": 11753,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 24,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 16421,
+      "builtupAreaSqm": 5251,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 96,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 13160,
+      "builtupAreaSqm": 3870,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 32,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 45582,
+      "builtupAreaSqm": 10298,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 14,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 39459,
+      "builtupAreaSqm": 252,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R5"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "builtupAreaSqm": 6617,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 16,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 33495,
+      "builtupAreaSqm": 12070,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 80,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 26048,
+      "builtupAreaSqm": 10566,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 72,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 46870,
+      "builtupAreaSqm": 30425,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 2,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 35836,
+      "builtupAreaSqm": 15651,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 33196,
+      "builtupAreaSqm": 9744,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 88,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 25150,
+      "builtupAreaSqm": 32695,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 20963,
+      "builtupAreaSqm": 7059,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 24,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 47966,
+      "builtupAreaSqm": 26979,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 24,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 12568,
+      "builtupAreaSqm": 4388,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 32,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "builtupAreaSqm": 252,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3",
+      "R5"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 11950,
+      "builtupAreaSqm": 4354,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 45271,
+      "builtupAreaSqm": 24892,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 16,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 41634,
+      "builtupAreaSqm": 54124,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 20,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R1",
+      "R2",
+      "R4"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 37990,
+      "builtupAreaSqm": 8843,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 72,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 33183,
+      "builtupAreaSqm": 19876,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 8,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 16721,
+      "builtupAreaSqm": 7411,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 11626,
+      "builtupAreaSqm": 2372,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 88,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 34593,
+      "builtupAreaSqm": 14048,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 12,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2",
+      "R3",
+      "R4"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 45135,
+      "builtupAreaSqm": 12046,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 24,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "builtupAreaSqm": 42085,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 96,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 45150,
+      "builtupAreaSqm": 144,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 32,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R5"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 12779,
+      "builtupAreaSqm": 5322,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 12754,
+      "builtupAreaSqm": 4063,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 14,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 29181,
+      "builtupAreaSqm": 9535,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 16,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 40658,
+      "builtupAreaSqm": 21973,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 80,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 30210,
+      "builtupAreaSqm": 18900,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 72,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 45194,
+      "builtupAreaSqm": 58752,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 8,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R1"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 47969,
+      "builtupAreaSqm": 11236,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 12,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 32294,
+      "builtupAreaSqm": 11939,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 88,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "builtupAreaSqm": 20786,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2",
+      "R3"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 28471,
+      "builtupAreaSqm": 5817,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 24,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 29442,
+      "builtupAreaSqm": 432,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 96,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R5"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 33986,
+      "builtupAreaSqm": 10843,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 8,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R4"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 22106,
+      "builtupAreaSqm": 28738,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R1"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 23703,
+      "builtupAreaSqm": 14909,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 56,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "landAreaSqm": 13634,
+      "builtupAreaSqm": 4097,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 16,
+      "labCount": 5,
+      "leaseExpiry": "2026-01-15",
+      "fillSeconds": 40,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "EXTENSION",
+    "values": {
+      "landAreaSqm": 42007,
+      "builtupAreaSqm": 21803,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 120,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 180,
+          "years": 4
+        }
+      ],
+      "facultyCount": 80,
+      "labCount": 10,
+      "leaseExpiry": "2026-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT",
+        "FACULTY_LIST"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R2"
+    ]
+  },
+  {
+    "type": "INTAKE_INCREASE",
+    "values": {
+      "landAreaSqm": 40331,
+      "builtupAreaSqm": 12205,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 180,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 30,
+          "years": 4
+        },
+        {
+          "name": "Course 3",
+          "intake": 60,
+          "years": 4
+        }
+      ],
+      "facultyCount": 18,
+      "labCount": 15,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "AFFIDAVIT",
+      "FACULTY_LIST"
+    ],
+    "expectedRuleHits": [
+      "R3",
+      "R4"
+    ]
+  },
+  {
+    "type": "NEW_INSTITUTION",
+    "values": {
+      "landAreaSqm": 38226,
+      "builtupAreaSqm": 17191,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 30,
+          "years": 4
+        }
+      ],
+      "facultyCount": 8,
+      "labCount": 5,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN",
+        "AFFIDAVIT"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN",
+      "AFFIDAVIT"
+    ],
+    "expectedRuleHits": []
+  },
+  {
+    "type": "CHANGE_OF_SITE",
+    "values": {
+      "builtupAreaSqm": 8609,
+      "courses": [
+        {
+          "name": "Course 1",
+          "intake": 60,
+          "years": 4
+        },
+        {
+          "name": "Course 2",
+          "intake": 120,
+          "years": 4
+        }
+      ],
+      "facultyCount": 48,
+      "labCount": 10,
+      "leaseExpiry": "2031-06-01",
+      "fillSeconds": 1400,
+      "documents": [
+        "LAND_LEASE",
+        "BUILDING_PLAN"
+      ]
+    },
+    "today": "2026-06-01",
+    "requiredDocs": [
+      "LAND_LEASE",
+      "BUILDING_PLAN"
+    ],
+    "expectedRuleHits": []
+  }
+]

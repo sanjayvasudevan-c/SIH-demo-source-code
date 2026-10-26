@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "note": "Placeholder weights pending verification with AICTE officers.",
+  "stageWeight": { "SCRUTINY": 1.0, "RE_SCRUTINY": 0.7, "EVC_DESK": 1.4, "VERIFY": 0.6, "SAC_SHC_FORWARD": 0.5 },
+  "defaultCapacityPoints": 10,
+  "maxUtil": 1.0,
+  "urgentMaxUtil": 1.25,
+  "continuityUtilCap": 1.1,
+  "scoreWeights": { "projectedUtil": 0.7, "recent": 0.2, "mismatch": 0.1 },
+  "recentWorkingDays": 3,
+  "specialisationLookbackDays": 30,
+  "idleBelowTeamAverage": 0.35,
+  "overloadedAbove": 1.0,
+  "eligibility": {
+    "SCRUTINY": [{ "tier": 0, "role": "OFFICER", "region": "HOME" }, { "tier": 1, "role": "BUREAU", "region": "ANY" }],
+    "RE_SCRUTINY": [{ "tier": 0, "role": "OFFICER", "region": "HOME" }, { "tier": 1, "role": "BUREAU", "region": "ANY" }],
+    "VERIFY": [{ "tier": 0, "role": "OFFICER", "region": "HOME" }, { "tier": 1, "role": "BUREAU", "region": "ANY" }],
+    "EVC_DESK": [{ "tier": 0, "role": "OFFICER", "region": "HOME", "skill": "EVC_DESK" }, { "tier": 1, "role": "BUREAU", "region": "ANY" }],
+    "SAC_SHC_FORWARD": [{ "tier": 0, "role": "BUREAU", "region": "ANY" }]
+  },
+  "taskSkill": { "SCRUTINY": null, "RE_SCRUTINY": null, "VERIFY": null, "EVC_DESK": "EVC_DESK", "SAC_SHC_FORWARD": null }
+}

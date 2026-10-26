@@ -1,0 +1,569 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  COLLEGE
+  OFFICER
+  SENIOR
+  SUPER_SENIOR
+  HOD
+  BUREAU
+  COMMITTEE
+  AUTHORITY
+  ADMIN
+  RULE_EDITOR
+  RULE_APPROVER
+}
+
+enum Stage {
+  SCRUTINY
+  EVC
+  SAC_SHC
+  DECISION
+}
+
+enum Status {
+  IN_STAGE
+  RETURNED
+  APPROVED
+  APPROVED_WITH_CONDITIONS
+  REJECTED
+  CLOSED
+}
+
+enum HolderType {
+  USER
+  COMMITTEE
+  AUTHORITY
+  COLLEGE
+  NONE
+}
+
+enum AppType {
+  NEW_INSTITUTION
+  EXTENSION
+  NAME_CHANGE
+  INTAKE_INCREASE
+  CHANGE_OF_SITE
+  VERIFICATION_VISIT
+  RESTORATION
+}
+
+enum Category {
+  NEW
+  EXTENSION
+  EXPANSION
+}
+
+enum TaskType {
+  SCRUTINY
+  RE_SCRUTINY
+  EVC_DESK
+  VERIFY
+  SAC_SHC_FORWARD
+}
+
+enum AvailabilityKind {
+  LEAVE
+  TRAINING
+  FIELD_VISIT
+  OFFLINE
+}
+
+enum ItemType {
+  STAGE_SLA
+  EVC_SCHEDULE
+  EVC_REPORT
+  VERIFICATION
+  UNDERTAKING
+  DOC_EXPIRY
+}
+
+enum ItemStatus {
+  OPEN
+  PAUSED
+  MET
+  MISSED
+  CLOSED
+}
+
+enum Unit {
+  WORKING
+  CALENDAR
+}
+
+enum ReasonCode {
+  STAGE_AT_RISK
+  STAGE_OVERDUE
+  WAITING_ON_COLLEGE
+  STALLED
+  EVC_NOT_SCHEDULED
+  EVC_OVERDUE
+  EVIDENCE_PENDING_VERIFICATION
+  UNDERTAKING_DUE_SOON
+  UNDERTAKING_OVERDUE
+  DOC_EXPIRING
+  DOC_EXPIRED
+  BLOCKED
+  URGENT
+  ESCALATED
+}
+
+enum EvcStatus {
+  UNSCHEDULED
+  SCHEDULED
+  REPORTED
+}
+
+enum UndertakingStatus {
+  OPEN
+  SUBMITTED
+  VERIFIED
+}
+
+enum RulePackStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  SUPERSEDED
+  REJECTED
+}
+
+enum AmendmentKind {
+  APH
+  ADDENDUM
+  CORRIGENDUM
+  PUBLIC_NOTICE
+  REVISED_PUBLIC_NOTICE
+  CIRCULAR
+  ACADEMIC_CALENDAR
+  FEE_NOTIFICATION
+  PROTOTYPE_PLACEHOLDER
+}
+
+enum Severity {
+  NONE
+  MEDIUM
+  HIGH
+}
+
+model Region {
+  id           String        @id @default(uuid())
+  code         String        @unique
+  name         String
+  users        User[]
+  institutions Institution[]
+  applications Application[]
+}
+
+model User {
+  id            String       @id @default(uuid())
+  name          String
+  email         String       @unique
+  passwordHash  String
+  role          Role
+  regionId      String?
+  region        Region?      @relation(fields: [regionId], references: [id])
+  reportsToId   String?
+  reportsTo     User?        @relation("ReportsTo", fields: [reportsToId], references: [id])
+  reports       User[]       @relation("ReportsTo")
+  institutionId String?
+  institution   Institution? @relation("CollegeUsers", fields: [institutionId], references: [id])
+  title         String?
+  active        Boolean      @default(true)
+  /// Rule change notices published after this are "new since your last visit" (college banner).
+  noticesSeenAt DateTime?
+
+  profile       OfficerProfile?
+  availability  OfficerAvailability[] @relation("AvailabilityUser")
+  portfolio     Institution[]         @relation("Portfolio")
+  assignments   Assignment[]          @relation("AssignmentOfficer")
+  notifications Notification[]
+
+  @@index([reportsToId])
+  @@index([regionId, role])
+}
+
+model OfficerProfile {
+  userId               String  @id
+  user                 User    @relation(fields: [userId], references: [id])
+  homeRegionId         String?
+  capacityPoints       Decimal @default(10)
+  maxUtil              Decimal @default(1.0)
+  skills               Json    @default("[]")
+  barredInstitutionIds Json    @default("[]")
+}
+
+model OfficerAvailability {
+  id          String           @id @default(uuid())
+  userId      String
+  user        User             @relation("AvailabilityUser", fields: [userId], references: [id])
+  kind        AvailabilityKind
+  startsOn    DateTime         @db.Date
+  endsOn      DateTime         @db.Date
+  reason      String
+  createdById String
+  createdAt   DateTime         @default(now())
+
+  @@index([userId, startsOn, endsOn])
+}
+
+model Institution {
+  id                 String        @id @default(uuid())
+  permanentId        String        @unique
+  name               String
+  regionId           String
+  region             Region        @relation(fields: [regionId], references: [id])
+  portfolioOfficerId String?
+  portfolioOfficer   User?         @relation("Portfolio", fields: [portfolioOfficerId], references: [id])
+  kind               String        @default("ENGINEERING_COLLEGE")
+  isTechnical        Boolean       @default(true)
+  collegeUsers       User[]        @relation("CollegeUsers")
+  applications       Application[]
+  documents          Document[]
+}
+
+model PortfolioHistory {
+  id            String   @id @default(uuid())
+  institutionId String
+  fromOfficerId String?
+  toOfficerId   String
+  byUserId      String
+  reason        String
+  at            DateTime
+}
+
+model Application {
+  id                String          @id @default(uuid())
+  applicationNo     String          @unique
+  institutionId     String
+  institution       Institution     @relation(fields: [institutionId], references: [id])
+  regionId          String
+  region            Region          @relation(fields: [regionId], references: [id])
+  type              AppType
+  cycleId           String
+  cycle             ApprovalCycle   @relation(fields: [cycleId], references: [id])
+  rulePackVersionId String
+  rulePackVersion   RulePackVersion @relation(fields: [rulePackVersionId], references: [id])
+  category          Category
+  categoryRank      Int
+  route             Json
+  stage             Stage
+  status            Status
+  holderType        HolderType
+  holderUserId      String?
+  evcScheduled      Boolean         @default(false)
+  sacForwarded      Boolean         @default(false)
+  previousOfficerId String?
+  submittedAt       DateTime
+  stageEnteredAt    DateTime
+  lastActionAt      DateTime
+  formData          Json
+
+  assignments     Assignment[]
+  documents       Document[]
+  deficiencies    Deficiency[]
+  evcVisit        EvcVisit?
+  recommendations Recommendation[]
+  decision        Decision?
+  undertakings    Undertaking[]
+  deadlineItems   DeadlineItem[]
+  flags           ExceptionFlag[]
+  formChecks      FormCheckResult[]
+
+  @@index([regionId, stage])
+  @@index([institutionId])
+  @@index([rulePackVersionId])
+}
+
+model Assignment {
+  id                   String      @id @default(uuid())
+  applicationId        String
+  application          Application @relation(fields: [applicationId], references: [id])
+  taskType             TaskType
+  taskRefId            String      @default("")
+  officerId            String
+  officer              User        @relation("AssignmentOfficer", fields: [officerId], references: [id])
+  weight               Decimal
+  tier                 Int
+  reasonText           String
+  rulePackVersionId    String
+  recommendedOfficerId String?
+  assignedAt           DateTime
+  releasedAt           DateTime?
+  releasedReason       String?
+  overriddenById       String?
+
+  @@index([applicationId])
+}
+
+model Document {
+  id            String       @id @default(uuid())
+  applicationId String?
+  application   Application? @relation(fields: [applicationId], references: [id])
+  institutionId String
+  institution   Institution  @relation(fields: [institutionId], references: [id])
+  kind          String
+  fileName      String
+  storedName    String
+  mimeType      String
+  size          Int
+  uploadedById  String
+  uploadedAt    DateTime
+  expiryDate    DateTime?    @db.Date
+  verified      Boolean      @default(false)
+  verifiedById  String?
+  verifiedAt    DateTime?
+  supersedesId  String?
+
+  @@index([applicationId])
+  @@index([institutionId])
+}
+
+model Deficiency {
+  id               String      @id @default(uuid())
+  applicationId    String
+  application      Application @relation(fields: [applicationId], references: [id])
+  items            Json
+  reason           String
+  raisedById       String
+  raisedAt         DateTime
+  resolvedAt       DateTime?
+  replyNote        String?
+  replyDocumentIds Json        @default("[]")
+}
+
+model EvcVisit {
+  id                String      @id @default(uuid())
+  applicationId     String      @unique
+  application       Application @relation(fields: [applicationId], references: [id])
+  proposedMemberIds Json
+  memberIds         Json
+  visitDate         DateTime?   @db.Date
+  mode              String?
+  status            EvcStatus
+  checklist         Json?
+  recommendation    String?
+  reportText        String?
+  appointedUnder    String?
+  reportedById      String?
+  reportedAt        DateTime?
+}
+
+model Recommendation {
+  id            String      @id @default(uuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+  committeeRole String
+  memberId      String
+  text          String
+  at            DateTime
+}
+
+model Decision {
+  id            String      @id @default(uuid())
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id])
+  outcome       String
+  reason        String
+  decidedById   String
+  at            DateTime
+}
+
+model Undertaking {
+  id            String            @id @default(uuid())
+  applicationId String
+  application   Application       @relation(fields: [applicationId], references: [id])
+  condition     String
+  dueDate       DateTime          @db.Date
+  status        UndertakingStatus
+  evidenceDocId String?
+  verifiedById  String?
+  verifiedAt    DateTime?
+  remarks       String?
+}
+
+model DeadlineItem {
+  id                BigInt      @id @default(autoincrement())
+  applicationId     String
+  application       Application @relation(fields: [applicationId], references: [id])
+  type              ItemType
+  sourceId          String      @default("")
+  responsibleUserId String
+  dueDate           DateTime    @db.Date
+  unit              Unit
+  totalDays         Int?
+  status            ItemStatus
+  pausedRemaining   Int?
+  escalationLevel   Int         @default(0)
+  createdAt         DateTime
+  closedAt          DateTime?
+
+  @@index([status, dueDate])
+  @@index([applicationId])
+}
+
+model AlertLog {
+  id            BigInt   @id @default(autoincrement())
+  itemId        BigInt
+  kind          String
+  offsetOrLevel Int
+  triggerDate   DateTime @db.Date
+  late          Boolean
+  createdAt     DateTime
+
+  @@unique([itemId, kind, offsetOrLevel])
+}
+
+model ExceptionFlag {
+  id               String      @id @default(uuid())
+  applicationId    String
+  application      Application @relation(fields: [applicationId], references: [id])
+  reasonCode       ReasonCode
+  sourceItemId     String      @default("")
+  ownerRole        Role
+  ownerUserId      String?
+  reasonText       String
+  nextAction       String
+  nextEscalationAt DateTime?   @db.Date
+  escalationLevel  Int
+  sortKeys         Json
+  raisedAt         DateTime
+  resolvedAt       DateTime?
+
+  @@unique([applicationId, reasonCode, sourceItemId])
+}
+
+model FormCheckResult {
+  id             String       @id @default(uuid())
+  applicationId  String?
+  application    Application? @relation(fields: [applicationId], references: [id])
+  institutionId  String
+  draftId        String
+  modelVersion   String
+  modelAvailable Boolean
+  score          Float?
+  threshold      Float?
+  severity       Severity
+  warnings       Json
+  justification  String?
+  officerLabels  Json         @default("{}")
+  createdAt      DateTime
+
+  @@index([draftId])
+}
+
+model Notification {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  applicationId String?
+  kind          String
+  message       String
+  read          Boolean  @default(false)
+  createdAt     DateTime
+
+  @@index([userId, read])
+}
+
+model AuditLog {
+  id            BigInt   @id @default(autoincrement())
+  chainKey      String
+  at            DateTime
+  actorId       String?
+  actorRole     String
+  action        String
+  applicationId String?
+  fromState     Json?
+  toState       Json?
+  reason        String?
+  meta          Json     @default("{}")
+  prevHash      String
+  rowHash       String
+
+  @@index([chainKey, id])
+  @@index([applicationId])
+}
+
+model Holiday {
+  date DateTime @id @db.Date
+  name String
+}
+
+model SimClock {
+  id             Int     @id @default(1)
+  offsetDays     Int     @default(0)
+  /// Demo only (DEMO_MODE=true): file outside the application windows. Set by the admin; audited.
+  ignoreSchedule Boolean @default(false)
+}
+
+model SchedulerHeartbeat {
+  instanceId String   @id
+  isLeader   Boolean
+  lastRunAt  DateTime
+  lastResult Json
+}
+
+model ApprovalCycle {
+  id           String            @id @default(uuid())
+  code         String            @unique
+  label        String
+  baseRef      String
+  createdAt    DateTime
+  versions     RulePackVersion[]
+  applications Application[]
+}
+
+model RulePackVersion {
+  id               String         @id @default(uuid())
+  cycleId          String
+  cycle            ApprovalCycle  @relation(fields: [cycleId], references: [id])
+  version          Int
+  status           RulePackStatus
+  content          Json
+  contentHash      String
+  parentVersionId  String?
+  createdById      String
+  createdAt        DateTime
+  submittedById    String?
+  submittedAt      DateTime?
+  approvedById     String?
+  approvedAt       DateTime?
+  publishedById    String?
+  publishedAt      DateTime?
+  rejectedRemarks  String?
+  effectiveFrom    DateTime       @db.Date
+  scheduledPublish Boolean        @default(false)
+  amendment        Amendment?
+  applications     Application[]
+
+  @@unique([cycleId, version])
+}
+
+model Amendment {
+  id          String          @id @default(uuid())
+  versionId   String          @unique
+  version     RulePackVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+  kind        AmendmentKind
+  refNo       String
+  issuedOn    DateTime        @db.Date
+  title       String
+  summary     String
+  sourceDocId String?
+  applyScope  Json            @default("{}")
+}
+
+/// Uploaded file bytes when STORAGE_DRIVER=db (hosted demo). Keyed by Document.storedName.
+model StoredBlob {
+  name      String   @id
+  data      Bytes
+  createdAt DateTime @default(now())
+}

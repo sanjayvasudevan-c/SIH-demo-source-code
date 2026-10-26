@@ -1,0 +1,3666 @@
+{
+ "note": "Expression conformance cases. Both api/src/rules/expr.ts and formcheck/app/expr.py must produce `expected` (numbers compared numerically) and refuse every `invalid` case with a message containing `error`. Known variables for validation: shared/expr-vars.json.",
+ "cases": [
+  {
+   "name": "var number",
+   "expr": {
+    "var": "features.land_area_sqm"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 20000
+  },
+  {
+   "name": "var nested missing",
+   "expr": {
+    "var": "features.nope"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "var missing root",
+   "expr": {
+    "var": "unknown.path"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "var explicit null",
+   "expr": {
+    "var": "features.sqm_per_student"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "var default used",
+   "expr": {
+    "var": [
+     "features.nope",
+     7
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 7
+  },
+  {
+   "name": "var default unused",
+   "expr": {
+    "var": [
+     "features.docs_ratio",
+     7
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 0.5
+  },
+  {
+   "name": "var boolean",
+   "expr": {
+    "var": "institution.isTechnical"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "var string",
+   "expr": {
+    "var": "programme.level"
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "UG"
+  },
+  {
+   "name": "literal true",
+   "expr": true,
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "literal number",
+   "expr": 3.5,
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 3.5
+  },
+  {
+   "name": "literal string",
+   "expr": "x",
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "x"
+  },
+  {
+   "name": "literal null",
+   "expr": null,
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "literal list",
+   "expr": [
+    1,
+    "a"
+   ],
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": [
+    1,
+    "a"
+   ]
+  },
+  {
+   "name": "== numbers",
+   "expr": {
+    "==": [
+     1,
+     1.0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "== number vs string",
+   "expr": {
+    "==": [
+     1,
+     "1"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "== bool vs number",
+   "expr": {
+    "==": [
+     true,
+     1
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "== null vs null",
+   "expr": {
+    "==": [
+     null,
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "== missing vs null",
+   "expr": {
+    "==": [
+     {
+      "var": "x.y"
+     },
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "== null vs 0",
+   "expr": {
+    "==": [
+     null,
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "== strings",
+   "expr": {
+    "==": [
+     {
+      "var": "programme.level"
+     },
+     "UG"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "== empty string vs false",
+   "expr": {
+    "==": [
+     "",
+     false
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "!= different types",
+   "expr": {
+    "!=": [
+     1,
+     "1"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "!= same",
+   "expr": {
+    "!=": [
+     "a",
+     "a"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "== lists",
+   "expr": {
+    "==": [
+     [
+      1,
+      2
+     ],
+     [
+      1,
+      2
+     ]
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "> numbers",
+   "expr": {
+    ">": [
+     {
+      "var": "features.builtup_area_sqm"
+     },
+     {
+      "var": "features.land_area_sqm"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "< numbers",
+   "expr": {
+    "<": [
+     {
+      "var": "features.docs_ratio"
+     },
+     {
+      "var": "norms.minDocsRatio"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "<= equal",
+   "expr": {
+    "<=": [
+     2,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": ">= less",
+   "expr": {
+    ">=": [
+     1,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "> with null left",
+   "expr": {
+    ">": [
+     {
+      "var": "features.sqm_per_student"
+     },
+     1
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "< with null right",
+   "expr": {
+    "<": [
+     1,
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "< with missing var",
+   "expr": {
+    "<": [
+     {
+      "var": "features.nope"
+     },
+     5
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "> string vs number",
+   "expr": {
+    ">": [
+     "10",
+     5
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "> strings",
+   "expr": {
+    ">": [
+     "b",
+     "a"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "<= negative",
+   "expr": {
+    "<=": [
+     {
+      "var": "features.lease_years_remaining"
+     },
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "> bool vs number",
+   "expr": {
+    ">": [
+     true,
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "and all true",
+   "expr": {
+    "and": [
+     true,
+     1,
+     "x"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "and with zero",
+   "expr": {
+    "and": [
+     true,
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "and with empty string",
+   "expr": {
+    "and": [
+     true,
+     ""
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "and with empty list",
+   "expr": {
+    "and": [
+     true,
+     []
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "or one true",
+   "expr": {
+    "or": [
+     false,
+     null,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "or all falsy",
+   "expr": {
+    "or": [
+     false,
+     0,
+     "",
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "! true",
+   "expr": {
+    "!": true
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "! list form",
+   "expr": {
+    "!": [
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "! null",
+   "expr": {
+    "!": [
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "! missing",
+   "expr": {
+    "!": [
+     {
+      "var": "a.b"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "! non-empty list",
+   "expr": {
+    "!": [
+     [
+      [
+       1
+      ]
+     ]
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "and short circuit with nested",
+   "expr": {
+    "and": [
+     {
+      "var": "institution.isTechnical"
+     },
+     {
+      "==": [
+       {
+        "var": "institution.kind"
+       },
+       "ENGINEERING"
+      ]
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "in list hit",
+   "expr": {
+    "in": [
+     {
+      "var": "programme.level"
+     },
+     [
+      "UG",
+      "PG"
+     ]
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "in list miss",
+   "expr": {
+    "in": [
+     "DIPLOMA",
+     [
+      "UG",
+      "PG"
+     ]
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "in number vs string",
+   "expr": {
+    "in": [
+     1,
+     [
+      "1",
+      2
+     ]
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "in string haystack",
+   "expr": {
+    "in": [
+     "a",
+     "abc"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "in null haystack",
+   "expr": {
+    "in": [
+     "a",
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "if then",
+   "expr": {
+    "if": [
+     true,
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "yes"
+  },
+  {
+   "name": "if else",
+   "expr": {
+    "if": [
+     false,
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "no"
+  },
+  {
+   "name": "if chain",
+   "expr": {
+    "if": [
+     false,
+     1,
+     true,
+     2,
+     3
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 2
+  },
+  {
+   "name": "if no else",
+   "expr": {
+    "if": [
+     false,
+     1
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "if truthy number",
+   "expr": {
+    "if": [
+     5,
+     "a",
+     "b"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "a"
+  },
+  {
+   "name": "+ sum",
+   "expr": {
+    "+": [
+     1,
+     2,
+     3
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 6
+  },
+  {
+   "name": "+ with null",
+   "expr": {
+    "+": [
+     1,
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "+ with string",
+   "expr": {
+    "+": [
+     1,
+     "2"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "+ with bool",
+   "expr": {
+    "+": [
+     1,
+     true
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "- binary",
+   "expr": {
+    "-": [
+     10,
+     4
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 6
+  },
+  {
+   "name": "- unary",
+   "expr": {
+    "-": [
+     4
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": -4
+  },
+  {
+   "name": "* product",
+   "expr": {
+    "*": [
+     2,
+     3,
+     0.5
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 3
+  },
+  {
+   "name": "/ divide",
+   "expr": {
+    "/": [
+     9,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 4.5
+  },
+  {
+   "name": "/ by zero",
+   "expr": {
+    "/": [
+     1,
+     0
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "/ by missing var",
+   "expr": {
+    "/": [
+     1,
+     {
+      "var": "x.y"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "/ var by zero var",
+   "expr": {
+    "/": [
+     {
+      "var": "features.land_area_sqm"
+     },
+     {
+      "var": "formData.facultyCount"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "min",
+   "expr": {
+    "min": [
+     3,
+     1,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 1
+  },
+  {
+   "name": "max",
+   "expr": {
+    "max": [
+     3,
+     1,
+     2
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": 3
+  },
+  {
+   "name": "min with null",
+   "expr": {
+    "min": [
+     3,
+     null
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": null
+  },
+  {
+   "name": "nested arithmetic compare",
+   "expr": {
+    ">": [
+     {
+      "/": [
+       {
+        "var": "features.builtup_area_sqm"
+       },
+       {
+        "var": "features.land_area_sqm"
+       }
+      ]
+     },
+     0.4
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "norm reference",
+   "expr": {
+    ">": [
+     {
+      "var": "features.students_per_faculty"
+     },
+     {
+      "var": "norms.maxStudentsPerFaculty"
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "route condition",
+   "expr": {
+    ">": [
+     {
+      "var": "formData.intakeIncreasePct"
+     },
+     50
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "eligibility",
+   "expr": {
+    "==": [
+     {
+      "var": "institution.hasPriorApproval"
+     },
+     true
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": false
+  },
+  {
+   "name": "purview",
+   "expr": {
+    "or": [
+     {
+      "var": "institution.isTechnical"
+     },
+     {
+      "!": {
+       "in": [
+        {
+         "var": "programme.code"
+        },
+        [
+         "BBA",
+         "BCA",
+         "BMS"
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": true
+  },
+  {
+   "name": "empty string falsy in if",
+   "expr": {
+    "if": [
+     {
+      "var": "formData.proposedName"
+     },
+     "named",
+     "unnamed"
+    ]
+   },
+   "data": {
+    "features": {
+     "land_area_sqm": 20000,
+     "builtup_area_sqm": 9000,
+     "students_per_faculty": 15.0,
+     "docs_ratio": 0.5,
+     "lease_years_remaining": -0.2,
+     "sqm_per_student": null
+    },
+    "norms": {
+     "maxStudentsPerFaculty": 20,
+     "minSqmPerStudent": 2.0,
+     "minDocsRatio": 0.8
+    },
+    "institution": {
+     "isTechnical": true,
+     "kind": "ENGINEERING",
+     "regionCode": "SOUTH",
+     "hasPriorApproval": false
+    },
+    "programme": {
+     "level": "UG",
+     "discipline": "ENGINEERING",
+     "code": "BTECH"
+    },
+    "application": {
+     "type": "EXTENSION"
+    },
+    "formData": {
+     "intakeIncreasePct": 60,
+     "programme": "BTECH",
+     "facultyCount": 0,
+     "proposedName": ""
+    }
+   },
+   "expected": "unnamed"
+  }
+ ],
+ "invalid": [
+  {
+   "name": "unknown operator",
+   "expr": {
+    "regex": [
+     "a",
+     "b"
+    ]
+   },
+   "error": "Operator \"regex\" is not allowed."
+  },
+  {
+   "name": "two operators in one object",
+   "expr": {
+    "==": [
+     1,
+     1
+    ],
+    "!=": [
+     1,
+     2
+    ]
+   },
+   "error": "exactly one operator"
+  },
+  {
+   "name": "wrong arity",
+   "expr": {
+    "==": [
+     1
+    ]
+   },
+   "error": "takes 2 arguments"
+  },
+  {
+   "name": "unknown variable",
+   "expr": {
+    "var": "secrets.password"
+   },
+   "error": "Unknown variable \"secrets.password\"."
+  },
+  {
+   "name": "nine levels deep",
+   "expr": {
+    "!": {
+     "!": {
+      "!": {
+       "!": {
+        "!": {
+         "!": {
+          "!": {
+           "!": {
+            "!": true
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "error": "nested more than 8 levels"
+  },
+  {
+   "name": "over 2 KB",
+   "expr": {
+    "in": [
+     "x",
+     [
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+     ]
+    ]
+   },
+   "error": "the limit is 2048"
+  }
+ ]
+}

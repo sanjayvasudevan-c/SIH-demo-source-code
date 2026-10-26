@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "note": "All routes, timelines, documents and thresholds are placeholders pending verification against the AICTE Approval Process Handbook (APH).",
+  "categories": {
+    "NEW": { "categoryWeight": 1.5, "categoryRank": 0 },
+    "EXTENSION": { "categoryWeight": 1.0, "categoryRank": 1 },
+    "EXPANSION": { "categoryWeight": 1.2, "categoryRank": 2 }
+  },
+  "types": {
+    "NEW_INSTITUTION": {
+      "label": "New institution",
+      "category": "NEW",
+      "requiresPriorApproval": false,
+      "route": [{ "stage": "SCRUTINY" }, { "stage": "EVC" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "LAND_LEASE", "label": "Land lease or title deed", "critical": true, "hasExpiry": true },
+        { "kind": "BUILDING_PLAN", "label": "Approved building plan", "critical": true, "hasExpiry": false },
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false },
+        { "kind": "FIRE_NOC", "label": "Fire safety NOC", "critical": false, "hasExpiry": true }
+      ]
+    },
+    "EXTENSION": {
+      "label": "Extension of approval",
+      "category": "EXTENSION",
+      "requiresPriorApproval": true,
+      "route": [{ "stage": "SCRUTINY" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false },
+        { "kind": "FACULTY_LIST", "label": "Faculty list with qualifications", "critical": true, "hasExpiry": false },
+        { "kind": "FIRE_NOC", "label": "Fire safety NOC", "critical": false, "hasExpiry": true }
+      ]
+    },
+    "NAME_CHANGE": {
+      "label": "Change of name",
+      "category": "EXTENSION",
+      "requiresPriorApproval": true,
+      "route": [{ "stage": "SCRUTINY" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false },
+        { "kind": "SOCIETY_RESOLUTION", "label": "Resolution of the trust or society", "critical": true, "hasExpiry": false }
+      ]
+    },
+    "INTAKE_INCREASE": {
+      "label": "Increase in intake",
+      "category": "EXPANSION",
+      "requiresPriorApproval": true,
+      "route": [
+        { "stage": "SCRUTINY" },
+        { "stage": "EVC", "when": { "field": "intakeIncreasePct", "op": "gt", "value": 50 } },
+        { "stage": "DECISION" }
+      ],
+      "documents": [
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false },
+        { "kind": "FACULTY_LIST", "label": "Faculty list with qualifications", "critical": true, "hasExpiry": false },
+        { "kind": "BUILDING_PLAN", "label": "Approved building plan", "critical": false, "hasExpiry": false }
+      ]
+    },
+    "CHANGE_OF_SITE": {
+      "label": "Change of site",
+      "category": "EXPANSION",
+      "requiresPriorApproval": true,
+      "route": [{ "stage": "SCRUTINY" }, { "stage": "EVC" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "LAND_LEASE", "label": "Land lease or title deed", "critical": true, "hasExpiry": true },
+        { "kind": "BUILDING_PLAN", "label": "Approved building plan", "critical": true, "hasExpiry": false },
+        { "kind": "FIRE_NOC", "label": "Fire safety NOC", "critical": false, "hasExpiry": true }
+      ]
+    },
+    "VERIFICATION_VISIT": {
+      "label": "Verification visit",
+      "category": "EXPANSION",
+      "requiresPriorApproval": false,
+      "route": [{ "stage": "EVC" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false }
+      ]
+    },
+    "RESTORATION": {
+      "label": "Restoration of approval",
+      "category": "EXPANSION",
+      "requiresPriorApproval": false,
+      "route": [{ "stage": "EVC" }, { "stage": "SAC_SHC" }, { "stage": "DECISION" }],
+      "documents": [
+        { "kind": "AFFIDAVIT", "label": "Affidavit on non-judicial stamp paper", "critical": true, "hasExpiry": false },
+        { "kind": "COMPLIANCE_REPORT", "label": "Compliance report on earlier deficiencies", "critical": true, "hasExpiry": false }
+      ]
+    }
+  },
+  "sla": {
+    "SCRUTINY": 15,
+    "SAC_SHC": 10,
+    "DECISION": 7,
+    "EVC_SCHEDULE": 10,
+    "EVC_REPORT": 5,
+    "VERIFICATION": 5
+  },
+  "complianceReminderOffsets": [30, 15, 7, 0],
+  "atRiskPct": 80,
+  "stalledWorkingDays": 10,
+  "urgentDays": 3,
+  "dueSoonDays": 30,
+  "escalationThresholds": [3, 7, 14]
+}

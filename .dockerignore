@@ -1,0 +1,7 @@
+**/node_modules
+**/dist
+api/storage
+.git
+.env
+formcheck/models/*.joblib
+**/__pycache__
