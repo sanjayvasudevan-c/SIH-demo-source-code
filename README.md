@@ -21,6 +21,12 @@ Built by **Team GeoLogics** for Smart India Hackathon 2026 (problem statement SI
   </tr>
 </table>
 
+## Presentation and demo
+
+- Slides (SIH 2026 idea presentation): [docs/presentation/GeoLogics_SIH2026_Presentation.pptx](docs/presentation/GeoLogics_SIH2026_Presentation.pptx)
+- Demo video: [Google Drive](https://drive.google.com/file/d/1MtdBjbsbe71ODzVC4wfgrNmJwZF5oWQB/view?usp=sharing)
+- Live prototype: [aicte-demo-website.vercel.app](https://aicte-demo-website.vercel.app)
+
 ## Quick start (about 10 minutes, most of it the first image build)
 
 You need three things on the machine:
