@@ -126,6 +126,10 @@ How the hosted version differs from the compose stack (all switched on automatic
 
 Build: the Vercel project's root directory is `web/`; `web/vercel.json` runs `scripts/vercel-build.mjs`, which migrates, reseeds and snapshots only when the schema or seed changed, then emits `.vercel/output`.
 
+## Load test
+
+The demo was load-tested at the deck's assumed scale of 15,000 applications in a cycle: no errors, and a second deadline-engine cycle added no duplicate alerts. Method and full results: [docs/LOAD_TEST.md](docs/LOAD_TEST.md). Run it yourself with `npm --workspace api run load:test`.
+
 ## Demo users
 
 Password for every user: `demo1234`.

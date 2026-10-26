@@ -42,6 +42,7 @@
     "db:seed": "tsx --env-file=../.env prisma/seed.ts",
     "demo:reset": "tsx --env-file-if-exists=../.env scripts/demo-reset.ts",
     "demo:tamper": "tsx --env-file-if-exists=../.env scripts/demo-tamper.ts",
+    "load:test": "tsx --env-file-if-exists=../.env scripts/load-test.ts",
     "setup:db": "tsx --env-file-if-exists=../.env scripts/setup.ts",
     "rules:schema": "tsx scripts/export-rulepack-schema.ts",
     "formcheck:defaults": "tsx scripts/export-formcheck-defaults.ts"
