@@ -2,6 +2,32 @@
   "name": "@aicte/api",
   "private": true,
   "version": "0.1.0",
+  "contributors": [
+    {
+      "name": "sanjayvasudevan-c",
+      "url": "https://github.com/sanjayvasudevan-c"
+    },
+    {
+      "name": "Arya-Ananth",
+      "url": "https://github.com/Arya-Ananth"
+    },
+    {
+      "name": "abilashprabakar27-ctrl",
+      "url": "https://github.com/abilashprabakar27-ctrl"
+    },
+    {
+      "name": "A-R-Mohamed-Arshad",
+      "url": "https://github.com/A-R-Mohamed-Arshad"
+    },
+    {
+      "name": "diya-240108",
+      "url": "https://github.com/diya-240108"
+    },
+    {
+      "name": "VishalN711",
+      "url": "https://github.com/VishalN711"
+    }
+  ],
   "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file=../.env src/index.ts",
